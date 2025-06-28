@@ -22,31 +22,20 @@ type VersionContent = {
   };
 };
 
-export async function uploadVersionJSON({
-  owner,
-  repo,
-  version,
-  notes,
-  tagName,
-  releaseId,
-  artifacts,
-  targetInfo,
-  unzippedSig,
-  updaterJsonPreferNsis,
-  updaterJsonKeepUniversal,
-}: {
-  owner: string;
-  repo: string;
-  version: string;
-  notes: string;
-  tagName: string;
-  releaseId: number;
-  artifacts: Artifact[];
-  targetInfo: TargetInfo;
-  unzippedSig: boolean;
-  updaterJsonPreferNsis: boolean;
-  updaterJsonKeepUniversal: boolean;
-}) {
+export async function uploadVersionJSON(
+  owner: string,
+  repo: string,
+  version: string,
+  notes: string,
+  tagName: string,
+  releaseId: number,
+  artifacts: Artifact[],
+  targetInfo: TargetInfo,
+  unzippedSig: boolean,
+  updaterJsonPreferNsis: boolean,
+  updaterJsonKeepUniversal: boolean,
+  retryAttempts: number,
+) {
   if (process.env.GITHUB_TOKEN === undefined) {
     throw new Error('GITHUB_TOKEN is required');
   }
@@ -215,5 +204,11 @@ export async function uploadVersionJSON({
     });
   }
 
-  await uploadAssets(owner, repo, releaseId, [{ path: versionFile, arch: '' }]);
+  await uploadAssets(
+    owner,
+    repo,
+    releaseId,
+    [{ path: versionFile, arch: '' }],
+    retryAttempts,
+  );
 }

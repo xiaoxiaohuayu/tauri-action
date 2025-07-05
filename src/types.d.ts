@@ -11,7 +11,7 @@ export interface Application {
 export interface Artifact {
   path: string;
   name: string;
-  mode: string;
+  mode: 'debug' | 'release';
   platform: Exclude<TargetPlatform, 'macos'> | 'darwin';
   arch: string;
   ext: string;

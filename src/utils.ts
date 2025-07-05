@@ -92,7 +92,14 @@ export function getAssetName(asset: Artifact, pattern?: string) {
       asset as unknown as Record<string, string>,
     );
   } else {
-    return basename(asset.path);
+    const base = basename(asset.path);
+    if (asset.mode === 'debug') {
+      return (
+        base.substring(0, base.length - asset.ext.length) + '-debug' + asset.ext
+      );
+    } else {
+      return base;
+    }
   }
 }
 

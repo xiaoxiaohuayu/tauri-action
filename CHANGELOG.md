@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.5.23]
+
+- [`5b1138d`](https://www.github.com/tauri-apps/tauri-action/commit/5b1138d93ce221ac6bfd4f0decb41b6d87963ff4) ([#1099](https://www.github.com/tauri-apps/tauri-action/pull/1099) by [@lete114](https://www.github.com/tauri-apps/tauri-action/../../lete114)) Added the `assetNamePattern` config that allows setting a template specifying how uploaded assets will be named in the release.
+  **BREAKING CHANGE:** The default naming scheme will now have the `-debug` suffix at the end (before the extension) on all assets.
+
 ## \[0.5.22]
 
 - [`be57b0c`](https://www.github.com/tauri-apps/tauri-action/commit/be57b0cca9e9ee2c15112c583ddb34e32157cc6a) ([#1100](https://www.github.com/tauri-apps/tauri-action/pull/1100) by [@FabianLars](https://www.github.com/tauri-apps/tauri-action/../../FabianLars)) Fixed an issue that caused the action to upload only the first artifact it found.
